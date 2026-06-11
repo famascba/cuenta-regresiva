@@ -8,9 +8,9 @@
   "timer": {
     "eventName": "Conferencia",
     "totalSeconds": 600,
-    "remainingSeconds": 600,
-    "isRunning": true,
+    "remainingSeconds": 0,
+    "isRunning": false,
     "isPaused": false,
-    "startedAt": "2026-06-11T01:12:37.638Z"
+    "startedAt": null
   }
 }
