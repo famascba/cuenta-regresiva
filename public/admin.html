@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administración - Cuenta Regresiva</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="admin-container">
+    <div class="admin-header">
+      <h1>⚙ Panel de Control</h1>
+      <div class="user-info">
+        <span id="userDisplay"></span>
+        <a href="/" class="btn-logout" style="text-decoration: none;">Ver Cuenta Regresiva</a>
+        <button class="btn-logout" id="logoutBtn">Cerrar Sesión</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>⏱ Configuración del Temporizador</h2>
+      <div class="config-row">
+        <label for="eventName">Nombre del Evento</label>
+        <input type="text" id="eventName" placeholder="Ej: Conferencia Principal">
+      </div>
+      <div class="config-row">
+        <label>Duración</label>
+        <div class="time-inputs">
+          <div>
+            <label style="font-size:11px; color:#666; text-align:center;">Horas</label>
+            <input type="number" id="hours" min="0" max="99" value="0">
+          </div>
+          <div>
+            <label style="font-size:11px; color:#666; text-align:center;">Minutos</label>
+            <input type="number" id="minutes" min="0" max="59" value="10">
+          </div>
+          <div>
+            <label style="font-size:11px; color:#666; text-align:center;">Segundos</label>
+            <input type="number" id="seconds" min="0" max="59" value="0">
+          </div>
+        </div>
+      </div>
+      <div class="config-row">
+        <label for="remainingOverride">Tiempo Restante (segundos) - solo cuando está detenido</label>
+        <input type="number" id="remainingOverride" min="0" placeholder="Ajustar tiempo restante manualmente">
+      </div>
+      <button class="btn-primary" id="saveConfigBtn" style="margin-top:8px;">Guardar Configuración</button>
+
+      <div class="controls-row">
+        <button class="btn-start" id="startBtn">▶ Iniciar</button>
+        <button class="btn-pause" id="pauseBtn" disabled>⏸ Pausar</button>
+        <button class="btn-reset" id="resetBtn">↺ Reiniciar</button>
+      </div>
+
+      <div id="statusIndicator" class="status-indicator status-stopped">
+        <span class="status-dot dot-stopped" id="statusDot"></span>
+        <span id="statusText">Detenido</span>
+      </div>
+
+      <div class="password-section">
+        <h3 id="togglePassword">🔑 Cambiar Contraseña</h3>
+        <div class="password-form" id="passwordForm">
+          <div class="form-group">
+            <label for="currentPassword">Contraseña Actual</label>
+            <input type="password" id="currentPassword">
+          </div>
+          <div class="form-group">
+            <label for="newPassword">Nueva Contraseña</label>
+            <input type="password" id="newPassword">
+          </div>
+          <button class="btn-primary" id="changePasswordBtn">Cambiar Contraseña</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>🖥 Vista Previa</h2>
+      <div class="admin-timer-preview">
+        <div class="admin-event-name" id="previewEventName">Conferencia</div>
+        <div class="admin-timer-display normal" id="previewTimer">10:00</div>
+        <div class="status-indicator status-stopped" style="margin-top:0;">
+          <span class="status-dot dot-stopped" id="previewStatusDot"></span>
+          <span id="previewStatusText">Detenido</span>
+        </div>
+        <div class="progress-bar-container">
+          <div class="progress-bar-fill" id="previewProgress" style="width:0%"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="/js/admin.js"></script>
+</body>
+</html>

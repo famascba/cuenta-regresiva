@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar Sesión - Cuenta Regresiva</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-box">
+      <h1>⏱ Cuenta Regresiva</h1>
+      <p>Panel de Administración</p>
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="username">Usuario</label>
+          <input type="text" id="username" name="username" placeholder="Ingrese su usuario" required autocomplete="username">
+        </div>
+        <div class="form-group">
+          <label for="password">Contraseña</label>
+          <input type="password" id="password" name="password" placeholder="Ingrese su contraseña" required autocomplete="current-password">
+        </div>
+        <button type="submit" class="btn-primary" id="loginBtn">Iniciar Sesión</button>
+        <div class="error-msg" id="errorMsg"></div>
+      </form>
+      <p style="margin-top: 24px; font-size: 12px; color: #555;">
+        <a href="/" style="color: #667eea; text-decoration: none;">← Ver pantalla de cuenta regresiva</a>
+      </p>
+    </div>
+  </div>
+  <script>
+    (function() {
+      localStorage.removeItem('token');
+
+      document.getElementById('loginForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById('loginBtn');
+        const errorMsg = document.getElementById('errorMsg');
+        btn.disabled = true;
+        btn.textContent = 'Ingresando...';
+        errorMsg.style.display = 'none';
+
+        try {
+          const res = await fetch('/api/auth/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              username: document.getElementById('username').value,
+              password: document.getElementById('password').value
+            })
+          });
+          const data = await res.json();
+          if (data.success && data.token) {
+            localStorage.setItem('token', data.token);
+            window.location.href = '/admin.html';
+          } else {
+            errorMsg.textContent = data.error || 'Error al iniciar sesión';
+            errorMsg.style.display = 'block';
+          }
+        } catch {
+          errorMsg.textContent = 'Error de conexión con el servidor';
+          errorMsg.style.display = 'block';
+        } finally {
+          btn.disabled = false;
+          btn.textContent = 'Iniciar Sesión';
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

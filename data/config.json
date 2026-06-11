@@ -1,0 +1,16 @@
+{
+  "users": [
+    {
+      "username": "admin",
+      "password": "$2a$10$cnooIvB4e4lHfZUV1CZ3J.KIBLSEj4B8quW5Y61BrP2ffDqS9/lju"
+    }
+  ],
+  "timer": {
+    "eventName": "Conferencia",
+    "totalSeconds": 600,
+    "remainingSeconds": 600,
+    "isRunning": true,
+    "isPaused": false,
+    "startedAt": "2026-06-11T01:12:37.638Z"
+  }
+}

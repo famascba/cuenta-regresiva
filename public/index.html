@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cuenta Regresiva - Evento</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="countdown-body">
+  <div class="countdown-container">
+    <div class="cd-event-name" id="cdEventName">Conferencia</div>
+
+    <div class="cd-not-started" id="cdNotStarted">
+      <h2>⏳</h2>
+      <p>Esperando configuración del evento...</p>
+    </div>
+
+    <div class="cd-time-up" id="cdTimeUp">
+      <h1>⏰ ¡TIEMPO!</h1>
+      <p>El evento ha finalizado</p>
+    </div>
+
+    <div id="cdTimerContainer" style="display:none;">
+      <div class="cd-timer normal" id="cdTimer">00:00</div>
+      <div class="cd-label">Tiempo Restante</div>
+      <div class="cd-progress">
+        <div class="cd-progress-fill normal" id="cdProgress" style="width:0%"></div>
+      </div>
+    </div>
+  </div>
+
+  <a href="/login.html" class="cd-admin-link">⚙ Admin</a>
+  <div class="quick-admin-btn" id="quickAdminBtn">⚙ Admin rápido</div>
+
+  <script src="/js/countdown.js"></script>
+</body>
+</html>
