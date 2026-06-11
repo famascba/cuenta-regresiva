@@ -14,9 +14,7 @@ function createApp() {
   const app = express();
 
   app.use(express.json());
-  if (!process.env.VERCEL) {
-    app.use(express.static(path.join(__dirname)));
-  }
+  app.use(express.static(process.env.VERCEL ? process.cwd() : path.join(__dirname)));
 
   app.get('/api/state', async (req, res) => {
     const config = await store.getAll();
