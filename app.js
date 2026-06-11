@@ -16,18 +16,6 @@ function createApp() {
   app.use(express.json());
   app.use(express.static(process.env.VERCEL ? process.cwd() : path.join(__dirname)));
 
-  if (process.env.VERCEL) {
-    app.get('/api/debug', (req, res) => {
-      const fs = require('fs');
-      res.json({
-        cwd: process.cwd(),
-        dirname: __dirname,
-        files: fs.readdirSync(process.cwd()).slice(0, 30),
-        exists_index: fs.existsSync(process.cwd() + '/index.html'),
-      });
-    });
-  }
-
   app.get('/api/state', async (req, res) => {
     const config = await store.getAll();
     const timer = config.timer;
